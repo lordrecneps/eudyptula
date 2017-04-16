@@ -1,0 +1,36 @@
+[recneps@hothead 1]$ ls
+hello.c  hello.ko  hello.mod.c  hello.mod.o  hello.o  Makefile  modules.order  Module.symvers
+[recneps@hothead 1]$ make
+make -C /lib/modules/4.8.17-1-MANJARO/build M=/home/recneps/code/eudyptula/1 modules
+make[1]: Entering directory '/usr/lib/modules/4.8.17-1-MANJARO/build'
+  CC [M]  /home/recneps/code/eudyptula/1/hello.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  LD [M]  /home/recneps/code/eudyptula/1/hello.ko
+make[1]: Leaving directory '/usr/lib/modules/4.8.17-1-MANJARO/build'
+[recneps@hothead 1]$ KERNEL_SRC_DIR=/usr/lib/modules/4.8.17-1-MANJARO make
+make -C /usr/lib/modules/4.8.17-1-MANJARO/build M=/home/recneps/code/eudyptula/1 modules
+make[1]: Entering directory '/usr/lib/modules/4.8.17-1-MANJARO/build'
+  Building modules, stage 2.
+  MODPOST 1 modules
+make[1]: Leaving directory '/usr/lib/modules/4.8.17-1-MANJARO/build'
+[recneps@hothead 1]$ sudo insmod hello.ko 
+[recneps@hothead 1]$ lsmod | grep hello
+hello                  16384  0
+[recneps@hothead 1]$ journalctl --since "2 min ago"
+-- Logs begin at Mon 2016-12-05 06:56:29 GMT, end at Sun 2017-04-16 14:40:37 BST. --
+Apr 16 14:40:37 hothead sudo[2059]:  recneps : TTY=pts/1 ; PWD=/home/recneps/code/eudyptula/1 ; USER=root ; COMMAND=/usr/bin/insmod hello.ko
+Apr 16 14:40:37 hothead sudo[2059]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Apr 16 14:40:37 hothead sudo[2059]: pam_unix(sudo:session): session closed for user root
+Apr 16 14:40:37 hothead kernel: Hello World!
+[recneps@hothead 1]$ sudo rmmod hello
+[recneps@hothead 1]$ journalctl --since "2 min ago"
+-- Logs begin at Mon 2016-12-05 06:56:29 GMT, end at Sun 2017-04-16 14:41:12 BST. --
+Apr 16 14:40:37 hothead sudo[2059]:  recneps : TTY=pts/1 ; PWD=/home/recneps/code/eudyptula/1 ; USER=root ; COMMAND=/usr/bin/insmod hello.ko
+Apr 16 14:40:37 hothead sudo[2059]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Apr 16 14:40:37 hothead sudo[2059]: pam_unix(sudo:session): session closed for user root
+Apr 16 14:40:37 hothead kernel: Hello World!
+Apr 16 14:41:12 hothead sudo[2104]:  recneps : TTY=pts/1 ; PWD=/home/recneps/code/eudyptula/1 ; USER=root ; COMMAND=/usr/bin/rmmod hello
+Apr 16 14:41:12 hothead sudo[2104]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Apr 16 14:41:12 hothead kernel: Goodbye cruel world
+Apr 16 14:41:12 hothead sudo[2104]: pam_unix(sudo:session): session closed for user root
