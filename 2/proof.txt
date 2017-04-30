@@ -1,0 +1,81 @@
+[recneps@hothead boot]$ pwd
+/home/recneps/code/linux/build/arch/x86/boot
+[recneps@hothead boot]$ cd ../../x86_64/
+[recneps@hothead x86_64]$ ls
+boot
+[recneps@hothead x86_64]$ cd boot/
+[recneps@hothead boot]$ ls
+bzImage
+[recneps@hothead boot]$ ls
+bzImage
+[recneps@hothead boot]$ mkinitcpio -g ./initramfs.img -k bzImage
+==> ERROR: '/lib/modules/bzImage' is not a valid kernel module directory
+[recneps@hothead boot]$ mkinitcpio -g ./initramfs.img -k ./bzImage
+==> ERROR: '/lib/modules/./bzImage' is not a valid kernel module directory
+[recneps@hothead boot]$ mkinitcpio -g ./initramfs.img -k $(pwd)/bzImage
+==> Starting build: 4.11.0-rc8-00109-g8c9a694dc046
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [autodetect]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [keymap]
+  -> Running build hook: [plymouth]
+  -> Running build hook: [resume]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /home/recneps/code/linux/build/arch/x86_64/boot/initramfs.img
+==> WARNING: Not building as root, ownership cannot be preserved
+==> Image generation successful
+[recneps@hothead boot]$ ls
+bzImage  initramfs.img
+[recneps@hothead boot]$ qemu-
+qemu-img            qemu-io             qemu-nbd            qemu-system-x86_64  
+[recneps@hothead boot]$ qemu-system-x86_64 -kernel bzImage -initrd 
+bzImage        initramfs.img  
+[recneps@hothead boot]$ qemu-system-x86_64 -kernel bzImage -initrd initramfs.img 
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Allocating size to GtkScrollbar 0x7f7e94b66370 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: gtk_widget_size_allocate(): attempt to allocate widget with width -1239583132 and height 400
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 14) while measuring gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 16) while measuring gadget (node trough, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 14) while measuring gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Negative content width -5 (allocation 1, extents 3x3) while allocating gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Negative content width -5 (allocation 1, extents 3x3) while allocating gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Allocating size to GtkScrollbar 0x7f7e94b66570 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: gtk_widget_size_allocate(): attempt to allocate widget with width -1239583132 and height 400
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 14) while measuring gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 16) while measuring gadget (node trough, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 14) while measuring gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Negative content width -5 (allocation 1, extents 3x3) while allocating gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Negative content width -5 (allocation 1, extents 3x3) while allocating gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Allocating size to GtkScrollbar 0x7f7e94b66770 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: gtk_widget_size_allocate(): attempt to allocate widget with width -1239583132 and height 400
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 14) while measuring gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 16) while measuring gadget (node trough, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: for_size smaller than min-size (1 < 14) while measuring gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Negative content width -5 (allocation 1, extents 3x3) while allocating gadget (node button, owner GtkScrollbar)
+
+(qemu-system-x86_64:16191): Gtk-WARNING **: Negative content width -5 (allocation 1, extents 3x3) while allocating gadget (node button, owner GtkScrollbar)
+main-loop: WARNING: I/O thread spun for 1000 iterations

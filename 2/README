@@ -1,0 +1,5 @@
+Followed the instructions under Documentation/admin-guide/README.rst
+
+ran make localmodconfig and manually set CONFIG_LOCALVERSION_AUTO=y
+
+Then created an initramfs and ran the kernel with qemu.
